@@ -64,10 +64,23 @@ ul li a:hover {
 @media screen and (max-width: 600px) {
 nav ul li a {
 	display: block;
-	color: #f33;
     float: none;
     width: 100%;}
+.container {
+	width: 100%;
+}
+    .form {
+	width: 100%;
+	text-align: center;
+}
+footer {
+	position: relative;
+	float: left;
   }
+form {
+	width: 100%;
+}
+}
 /****************BODY********************/
 .container {
 	width: 80%;
