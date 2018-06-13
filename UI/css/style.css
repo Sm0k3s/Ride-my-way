@@ -4,6 +4,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+	font-family: 'PT Sans', sans-serif;
 }
 
 body {
@@ -118,6 +119,26 @@ footer {
 /****************END OF FOOTER*****************/
 
 /*-----------Sign Up page-----------*/
+form {
+	margin: 0 auto;
+}
+.form {
+	width: 33%;
+	margin: 0 auto;
+	text-align: center;
+}
+
 .form1 {
+	padding: 8px 15px;
+	border: 1px solid #30383b;
+	width: 300px;
+	border-radius: 3px;
 	display: block;
+}
+.sign {
+	background-color: #30383b;
+	border: 1px solid #30383b;
+	width: 100%;
+	margin-top: 10px; 
+	padding: 10px;
 }
