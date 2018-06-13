@@ -1,1 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette|Rajdhani|PT+Sans');
 
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	
+	background-color: #f0fff9;
+}
+
+/*********HEADER**********/
+header {
+	width: 100%;
+	height: 60px;
+	background-color: #30383b;
+}
+
+h1 {
+	font-family: 'Courgette', cursive;
+	margin-top: 14px;
+	color: #2eb281;
+}
+
+.logo {
+	float: left;
+}
+
+.links {
+	margin-top: 20px;
+	float: right;
+}
+
+nav {
+	width: 80%;
+	margin: 0 auto;
+}
+
+ul li {
+	display: inline;
+	list-style: none;
+	float: left;
+}
+ul li a {
+	text-decoration: none;
+	padding: 8px;
+	border: 1px solid #2eb281;
+	background-color: #2eb281;
+	color: #30383b;
+	font-family: 'PT Sans', sans-serif;
+	transition: ease-in-out .5s;
+}
+
+ul li a:hover {
+	border: 1px solid #2eb281;
+	background-color: #30383b;
+	color: #2eb281;
+	transition: ease-in-out .5s;
+}
+/*************END OF HEADER***************/
+
+/****************BODY********************/
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.text {
+	color: #30383b;
+	max-width: 400px;
+	margin: 0 auto;
+	font-size: 20px;
+	font-family: 'PT Sans', sans-serif;
+}
+
+h2 {
+	margin: 30px;
+	font-size: 50px;
+	font-family: 'Rajdhani', sans-serif;
+}
+/****************END OF BODY******************/
+
+/****************FOOTER********************/
+footer {
+	width: 100%;
+	height: 50px;
+	background-color: #30383b;
+	position: absolute;
+	bottom: 0;
+}
+.copyright {
+	width: 100%;
+	text-align: center;
+	position: relative;
+	top: 15px;
+	align-content: center;
+	color: #2eb281;
+	font-family: 'PT Sans', sans-serif;
+}
+/****************END OF FOOTER*****************/
