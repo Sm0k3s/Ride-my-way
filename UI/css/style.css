@@ -129,16 +129,46 @@ form {
 }
 
 .form1 {
+	margin: 10px 0;
 	padding: 8px 15px;
 	border: 1px solid #30383b;
-	width: 300px;
+	width: 100%;
 	border-radius: 3px;
 	display: block;
 }
 .sign {
+	display: inline;
+	float: left;
 	background-color: #30383b;
 	border: 1px solid #30383b;
-	width: 100%;
+	width: 50%;
 	margin-top: 10px; 
-	padding: 10px;
+	padding: 10px 20px;
+	color: #2eb281;
+}
+
+.sign1 {
+	display: inline;
+	float: left;
+	background-color: #f0fff9;
+	border: 1px solid #30383b;
+	width: 50%;
+	margin-top: 10px; 
+	padding: 10px 20px;
+	color: #2eb281;
+}
+
+label {
+	margin: 10px;
+}
+
+.sign a {
+	font-size: 1.15em;
+	color: #2eb281;
+	text-decoration: none;
+}
+.sign1 a {
+	font-size: 1.15em;
+	color: #30383b;
+	text-decoration: none;
 }
