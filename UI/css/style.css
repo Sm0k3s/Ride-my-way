@@ -116,3 +116,8 @@ footer {
 	font-family: 'PT Sans', sans-serif;
 }
 /****************END OF FOOTER*****************/
+
+/*-----------Sign Up page-----------*/
+.form1 {
+	display: block;
+}
