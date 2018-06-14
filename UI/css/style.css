@@ -186,8 +186,38 @@ label {
 	text-decoration: none;
 }
 
+/*--------Rides Offers---------*/
+
 .navigation a {
 	border: 1px solid #30383b;
 	background-color: #30383b;
 	color: #2eb281;
+}
+
+.rides {
+	width: 100%;
+}
+.ride {
+	background-color: #2eb281;
+	border-radius: 5px;
+	width: 31%;
+	margin: 10px;
+	float: left;
+	box-shadow: 2px 2px 8px #888;
+}
+
+.ride button {
+	background-color: #ff712b;
+	padding: 5px 10px;
+	margin-bottom: 15px; 
+	margin-left: 40%;
+	border: 1px;
+	cursor: pointer;
+}
+.ride table {
+	margin: 10px;
+}
+
+.ride th {
+	color: #30383b;
 }
