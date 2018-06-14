@@ -185,3 +185,9 @@ label {
 	color: #30383b;
 	text-decoration: none;
 }
+
+.navigation a {
+	border: 1px solid #30383b;
+	background-color: #30383b;
+	color: #2eb281;
+}
