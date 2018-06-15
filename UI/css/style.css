@@ -271,8 +271,8 @@ label {
 	width: 22%;
 	margin: 1%;
 	height: 60vh;
-	background-color: #f8d;
 	float: left;
+	text-align: center;
 }
 
 .footer {
@@ -293,10 +293,10 @@ label {
 	padding: .75em 1.75em 0;
 }
 .ride-req span img {
-	width: 50%;
-	height: 50%;
+	width: 30%;
+	height: 30%;
 	border-radius: 100%;
-	margin: 0 25%;
+	margin: 5% 35%;
 	float: left;
 }
 .ride-req span {
@@ -304,4 +304,21 @@ label {
 	width: 100%;
 	display: block;
 	text-align: center;
+}
+.ride-req {
+	box-shadow: 2px 2px 8px #888;
+	border-radius: 2px;
+}
+
+.req button {
+	border: 1px;
+	cursor: pointer;
+	padding: 5px 10px;
+	margin-bottom: 5%;
+}
+.yes {
+	background-color: #0fffa2;
+}
+.no {
+	background-color: #ff712b;
 }
