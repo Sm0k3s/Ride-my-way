@@ -229,9 +229,9 @@ label {
 	display: table;
 }
 .avatar {
-	width: 24%;
+	width: 22%;
+	margin: 1%;
 	height: 60vh;
-	margin: 5px;
 	float: left;
 	border-radius: 3px;
 	box-shadow: 2px 2px 8px #000;
@@ -252,16 +252,24 @@ label {
 }
 .avatar-img {
 	width: 100%;
-	margin: 
+	margin: ;
+}
+
+.avatar h3 {
 }
 .histo {
 	width: 50%;
+	margin: 1%;
 	height: 2000px;
 	background-color: #ff0;
 	float: left;
 }
+.historia thead {
+	background-color: #
+}
 .req {
-	width: 24%;
+	width: 22%;
+	margin: 1%;
 	height: 60vh;
 	background-color: #f8d;
 	float: left;
@@ -283,4 +291,17 @@ label {
 }
 .historia th, .historia td {
 	padding: .75em 1.75em 0;
+}
+.ride-req span img {
+	width: 50%;
+	height: 50%;
+	border-radius: 100%;
+	margin: 0 25%;
+	float: left;
+}
+.ride-req span {
+	margin: 10px 0;
+	width: 100%;
+	display: block;
+	text-align: center;
 }
