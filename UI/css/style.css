@@ -234,8 +234,10 @@ label {
 	height: 60vh;
 	float: left;
 	border-radius: 3px;
+}
+.mugshot {
+	border-radius: 2px;
 	box-shadow: 2px 2px 8px #000;
-	background-color: #ffa;
 }
 .avatar span {
 	margin: 10px 0;
@@ -247,16 +249,17 @@ label {
 	width: 50%;
 	height: 50%;
 	border-radius: 100%;
-	margin: 0 25%;
+	margin: 5% 25%;
 	float: left;
 }
-.avatar-img {
-	width: 100%;
-	margin: ;
+
+.avatar button {
+	border: 1px;
+	cursor: pointer;
+	padding: 5px 10px;
+	margin-bottom: 5%;
 }
 
-.avatar h3 {
-}
 .histo {
 	width: 50%;
 	margin: 1%;
@@ -287,10 +290,22 @@ label {
 }
 
 .historia table {
+	width: 100%;
 	margin: 0 auto;
+	text-align: left;
+	border-collapse: collapse;
 }
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:nth-child(odd) {
+    background-color: #999;
+}
+
 .historia th, .historia td {
 	padding: .75em 1.75em 0;
+	border-bottom: 1px solid #888; 
 }
 .ride-req span img {
 	width: 30%;
