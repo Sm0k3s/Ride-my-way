@@ -28,6 +28,9 @@ h1 {
 .logo {
 	float: left;
 }
+.logo a {	
+	text-decoration: none;
+}
 
 .links {
 	margin-top: 20px;
@@ -237,7 +240,7 @@ label {
 }
 .mugshot {
 	border-radius: 2px;
-	box-shadow: 2px 2px 8px #000;
+	box-shadow: 2px 2px 8px #888;
 }
 .avatar span {
 	margin: 10px 0;
@@ -254,6 +257,8 @@ label {
 }
 
 .avatar button {
+	background-color: #2eb281;
+	color: #30383b;
 	border: 1px;
 	cursor: pointer;
 	padding: 5px 10px;
@@ -263,8 +268,7 @@ label {
 .histo {
 	width: 50%;
 	margin: 1%;
-	height: 2000px;
-	background-color: #ff0;
+	height: 800px;
 	float: left;
 }
 .historia thead {
@@ -273,7 +277,6 @@ label {
 .req {
 	width: 22%;
 	margin: 1%;
-	height: 60vh;
 	float: left;
 	text-align: center;
 }
@@ -286,8 +289,19 @@ label {
 	font-family: 'PT Sans', sans-serif;
 }
 .historia {
+	margin: 10px 0;
+	box-shadow: 2px 2px 8px #888;
+	border-radius: 8px;
 	width: 100%;
+	overflow-x: auto;
 }
+.historia h3 {
+
+	font-weight: 200;
+	text-align: center;
+	margin: 10px 0;
+}
+
 
 .historia table {
 	width: 100%;
@@ -296,12 +310,10 @@ label {
 	border-collapse: collapse;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+.historia tr:nth-child(even) {
+    background-color: #2eb281;
 }
-tr:nth-child(odd) {
-    background-color: #999;
-}
+
 
 .historia th, .historia td {
 	padding: .75em 1.75em 0;
@@ -332,8 +344,19 @@ tr:nth-child(odd) {
 	margin-bottom: 5%;
 }
 .yes {
-	background-color: #0fffa2;
+	background-color: #2eb281;
 }
 .no {
-	background-color: #ff712b;
+	background-color: #ff785b;
+}
+.offer {
+	width: 80%;
+	text-align: center;
+	margin: 3px 10%;
+}
+.offer label{
+	display: block;
+}
+.inputs button{
+	margin: 5px 0; 
 }

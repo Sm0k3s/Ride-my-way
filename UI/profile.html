@@ -10,14 +10,14 @@
 	<header>
 		<nav>
 			<span class="logo">
-				<h1>RIDE MY WAY</h1>
+				<a href="index.html"><h1>RIDE MY WAY</h1></a>
 			</span>
 			<span class="links">
 				<ul>
 					<span class="navigation">
 						<li><a href="offers.html">Rides</a></li>
 						<li><a href="profile.html">Profile</a></li>
-						<li><a href="history.html">History</a></li>
+						
 					</span>
 					<li><a href="login.html">Logout</a></li>
 				</ul>
@@ -31,17 +31,46 @@
 					<span><img src="images/5.png"></span>
 					<span>Lewis Hamilton</span>	
 					<span>Driver</span>
-					<span>Toyota Belta</span>
-					<span>KCE 485W</span>
 					<span><button>Edit profile</button></span>
 				</div>	
+				<div class="mugshot">
+					
+					<div class="offer">
+						<span>Create ride offer</span>
+					<form>
+						<div class="inputs">
+							<label>Pick up location</label>
+							<input type="text" placeholder="From">
+						</div>
+						<div class="inputs">
+							<label>Drop off location</label>
+							<input type="text" placeholder="to">
+						</div>
+						<div class="inputs">
+							<label>Date</label>
+							<input type="date" min="2018-06-15">
+						</div>
+						<div class="inputs">
+							<label>Time</label>
+							<input type="time">
+						</div>
+						<div class="inputs">
+							<button>Submit ride offer</button>
+						</div>
+					</form>
+				</div>
+				</div>
+				
 			</div>
 			<div class="histo">
+				
 				<div class="historia">
+					
 					<div class="">
-						<p>History of all the rides ever given out</p>
+						<h3>History of all the rides given out</h3>
 						<table>
-							<thead>
+							<tbody>
+						
 								<tr>
 								<th>#</th>
 								<th>Pick up</th>
@@ -49,15 +78,46 @@
 								<th>Date</th>
 								<th>Time</th>
 								</tr>
-							</thead>
+														
+								<tr>
+									<td>1</td>
+									<td>Point A</td>
+									<td>Point B</td>
+									<td>12/22/2016</td>
+									<td>1500hrs</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Point A</td>
+									<td>Point B</td>
+									<td>12/22/2016</td>
+									<td>1500hrs</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Point A</td>
+									<td>Point B</td>
+									<td>12/22/2016</td>
+									<td>1500hrs</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="historia">
+					<div class="">
+						<h3>History of all the rides taken</h3>
+						<table>
 							<tbody>
 								<tr>
-									<td>1</td>
-									<td>Point A</td>
-									<td>Point B</td>
-									<td>12/22/2016</td>
-									<td>1500hrs</td>
+								<th>#</th>
+								<th>Pick up</th>
+								<th>Drop off</th>
+								<th>Date</th>
+								<th>Time</th>
 								</tr>
+							
+							
 								<tr>
 									<td>1</td>
 									<td>Point A</td>
@@ -66,7 +126,14 @@
 									<td>1500hrs</td>
 								</tr>
 								<tr>
-									<td>1</td>
+									<td>2</td>
+									<td>Point A</td>
+									<td>Point B</td>
+									<td>12/22/2016</td>
+									<td>1500hrs</td>
+								</tr>
+								<tr>
+									<td>3</td>
 									<td>Point A</td>
 									<td>Point B</td>
 									<td>12/22/2016</td>
@@ -79,23 +146,23 @@
 				
 			</div>
 			<div class="req">
-				<span><p>Ride requests</p></span>
+				
 				<div class="ride-req">
-					
+					<span><p>Richard Harmond</p></span>
 					<span><img src="images/5.png"></span>
-					<span><p>Richard Harmond</p></span>	
+					<span><p>Requested a ride</p></span>
 					<span><button class="yes">Accept</button><button class="no">Decline</button></span>	
 				</div>
 				<div class="ride-req">
-					
+					<span><p>Jeremy Clarkson</p></span>
 					<span><img src="images/5.png"></span>
-					<span><p>Jeremy Clarkson</p></span>	
+					<span><p>Requested a ride</p></span>	
 					<span><button class="yes">Accept</button><button class="no">Decline</button></span>	
 				</div>
 				<div class="ride-req">
-					
+					<span><p>James May</p></span>
 					<span><img src="images/5.png"></span>
-					<span><p>James May</p></span>	
+					<span><p>Requested a ride</p></span>
 					<span><button class="yes">Accept</button><button class="no">Decline</button></span>	
 				</div>
 			</div>
