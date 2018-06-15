@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette|Rajdhani|PT+Sans');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'PT Sans', sans-serif;
+}
+
+body {
+	
+	background-color: #f0fff9;
+}
+
+/*********HEADER**********/
+header {
+	width: 100%;
+	height: 60px;
+	background-color: #30383b;
+}
+
+h1 {
+	font-family: 'Courgette', cursive;
+	margin-top: 14px;
+	color: #2eb281;
+}
+
+.logo {
+	float: left;
+}
+.logo a {	
+	text-decoration: none;
+}
+
+.links {
+	margin-top: 20px;
+	float: right;
+}
+
+nav {
+	width: 80%;
+	margin: 0 auto;
+}
+
+ul li {
+	display: inline;
+	list-style: none;
+	float: left;
+}
+ul li a {
+	text-decoration: none;
+	padding: 8px;
+	border: 1px solid #2eb281;
+	background-color: #2eb281;
+	color: #30383b;
+	font-family: 'PT Sans', sans-serif;
+	transition: ease-in-out .5s;
+}
+
+ul li a:hover {
+	border: 1px solid #2eb281;
+	background-color: #30383b;
+	color: #2eb281;
+	transition: ease-in-out .5s;
+}
+/*************END OF HEADER***************/
+@media screen and (max-width: 600px) {
+nav ul li a {
+	display: block;
+    float: none;
+    width: 100%;}
+.container {
+	width: 100%;
+}
+    .form {
+	width: 100%;
+	text-align: center;
+}
+footer {
+	position: relative;
+	float: left;
+  }
+form {
+	width: 100%;
+}
+}
+/****************BODY********************/
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.text {
+	color: #30383b;
+	max-width: 400px;
+	margin: 0 auto;
+	font-size: 20px;
+	font-family: 'PT Sans', sans-serif;
+}
+
+.register {
+	width: 135px;
+	margin: 10px auto;
+}
+
+.register ul li a {
+	border-radius: 30px;
+	padding: 8px 30px;
+	margin: 0 auto;
+}
+h2 {
+	color: #30383b;
+	margin: 30px;
+	font-size: 50px;
+	font-family: 'Rajdhani', sans-serif;
+}
+/****************END OF BODY******************/
+
+/****************FOOTER********************/
+footer {
+	text-align: center;
+	width: 100%;
+	height: 50px;
+	background-color: #30383b;
+	position: absolute;
+	bottom: 0;
+}
+.copyright {
+	width: 100%;
+	position: relative;
+	top: 15px;
+	align-content: center;
+	color: #2eb281;
+	font-family: 'PT Sans', sans-serif;
+}
+/****************END OF FOOTER*****************/
+
+/*-----------Sign Up page-----------*/
+form {
+	margin: 0 auto;
+}
+.form {
+	width: 33%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.form1 {
+	margin: 10px 0;
+	padding: 8px 15px;
+	border: 1px solid #30383b;
+	width: 100%;
+	border-radius: 3px;
+	display: block;
+}
+.sign {
+	display: inline;
+	float: left;
+	background-color: #30383b;
+	border: 1px solid #30383b;
+	width: 50%;
+	margin-top: 10px; 
+	padding: 10px 20px;
+	color: #2eb281;
+}
+
+.sign1 {
+	display: inline;
+	float: left;
+	background-color: #f0fff9;
+	border: 1px solid #30383b;
+	width: 50%;
+	margin-top: 10px; 
+	padding: 10px 20px;
+	color: #2eb281;
+}
+
+label {
+	margin: 10px;
+}
+
+.sign a {
+	font-size: 1.15em;
+	color: #2eb281;
+	text-decoration: none;
+}
+.sign1 a {
+	font-size: 1.15em;
+	color: #30383b;
+	text-decoration: none;
+}
+
+/*--------Rides Offers---------*/
+
+.navigation a {
+	border: 1px solid #30383b;
+	background-color: #30383b;
+	color: #2eb281;
+}
+
+.rides {
+	width: 100%;
+	color: #444;
+}
+.ride {
+	background-color:;
+	border-radius: 5px;
+	width: 31%;
+	margin: 10px;
+	float: left;
+	box-shadow: 2px 2px 8px #888;
+}
+
+.ride button {
+	background-color: #2eb281;
+	padding: 5px 10px;
+	margin-bottom: 15px; 
+	margin-left: 35%;
+	border: 1px;
+	cursor: pointer;
+}
+.ride table {
+	margin: 10px;
+}
+
+.ride th {
+	color: #30383b;
+}
+
+.profile {
+	width: 100%;
+	display: table;
+}
+.avatar {
+	width: 22%;
+	margin: 1%;
+	height: 60vh;
+	float: left;
+	border-radius: 3px;
+}
+.mugshot {
+	border-radius: 2px;
+	box-shadow: 2px 2px 8px #888;
+}
+.avatar span {
+	margin: 10px 0;
+	width: 100%;
+	display: block;
+	text-align: center;
+}
+.avatar span img {
+	width: 50%;
+	height: 50%;
+	border-radius: 100%;
+	margin: 5% 25%;
+	float: left;
+}
+
+.avatar button {
+	background-color: #2eb281;
+	color: #30383b;
+	border: 1px;
+	cursor: pointer;
+	padding: 5px 10px;
+	margin-bottom: 5%;
+}
+
+.histo {
+	width: 50%;
+	margin: 1%;
+	height: 800px;
+	float: left;
+}
+.historia thead {
+	background-color: #
+}
+.req {
+	width: 22%;
+	margin: 1%;
+	float: left;
+	text-align: center;
+}
+
+.footer {
+	width: 100%;
+	text-align: center;
+	position: relative;
+	color: #2eb281;
+	font-family: 'PT Sans', sans-serif;
+}
+.historia {
+	margin: 10px 0;
+	box-shadow: 2px 2px 8px #888;
+	border-radius: 8px;
+	width: 100%;
+	overflow-x: auto;
+}
+.historia h3 {
+
+	font-weight: 200;
+	text-align: center;
+	margin: 10px 0;
+}
+
+
+.historia table {
+	width: 100%;
+	margin: 0 auto;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+.historia tr:nth-child(even) {
+    background-color: #2eb281;
+}
+
+
+.historia th, .historia td {
+	padding: .75em 1.75em 0;
+	border-bottom: 1px solid #888; 
+}
+.ride-req span img {
+	width: 30%;
+	height: 30%;
+	border-radius: 100%;
+	margin: 5% 35%;
+	float: left;
+}
+.ride-req span {
+	margin: 10px 0;
+	width: 100%;
+	display: block;
+	text-align: center;
+}
+.ride-req {
+	box-shadow: 2px 2px 8px #888;
+	border-radius: 2px;
+}
+
+.req button {
+	border: 1px;
+	cursor: pointer;
+	padding: 5px 10px;
+	margin-bottom: 5%;
+}
+.yes {
+	background-color: #2eb281;
+}
+.no {
+	background-color: #ff785b;
+}
+.offer {
+	width: 80%;
+	text-align: center;
+	margin: 3px 10%;
+}
+.offer label{
+	display: block;
+}
+.inputs button{
+	margin: 5px 0; 
+}
