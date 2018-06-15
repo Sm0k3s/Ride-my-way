@@ -28,6 +28,9 @@ h1 {
 .logo {
 	float: left;
 }
+.logo a {	
+	text-decoration: none;
+}
 
 .links {
 	margin-top: 20px;
@@ -229,13 +232,15 @@ label {
 	display: table;
 }
 .avatar {
-	width: 24%;
+	width: 22%;
+	margin: 1%;
 	height: 60vh;
-	margin: 5px;
 	float: left;
 	border-radius: 3px;
-	box-shadow: 2px 2px 8px #000;
-	background-color: #ffa;
+}
+.mugshot {
+	border-radius: 2px;
+	box-shadow: 2px 2px 8px #888;
 }
 .avatar span {
 	margin: 10px 0;
@@ -247,24 +252,33 @@ label {
 	width: 50%;
 	height: 50%;
 	border-radius: 100%;
-	margin: 0 25%;
+	margin: 5% 25%;
 	float: left;
 }
-.avatar-img {
-	width: 100%;
-	margin: 
+
+.avatar button {
+	background-color: #2eb281;
+	color: #30383b;
+	border: 1px;
+	cursor: pointer;
+	padding: 5px 10px;
+	margin-bottom: 5%;
 }
+
 .histo {
 	width: 50%;
-	height: 2000px;
-	background-color: #ff0;
+	margin: 1%;
+	height: 800px;
 	float: left;
 }
+.historia thead {
+	background-color: #
+}
 .req {
-	width: 24%;
-	height: 60vh;
-	background-color: #f8d;
+	width: 22%;
+	margin: 1%;
 	float: left;
+	text-align: center;
 }
 
 .footer {
@@ -275,12 +289,74 @@ label {
 	font-family: 'PT Sans', sans-serif;
 }
 .historia {
+	margin: 10px 0;
+	box-shadow: 2px 2px 8px #888;
+	border-radius: 8px;
 	width: 100%;
+	overflow-x: auto;
+}
+.historia h3 {
+
+	font-weight: 200;
+	text-align: center;
+	margin: 10px 0;
 }
 
+
 .historia table {
+	width: 100%;
 	margin: 0 auto;
+	text-align: left;
+	border-collapse: collapse;
 }
+
+.historia tr:nth-child(even) {
+    background-color: #2eb281;
+}
+
+
 .historia th, .historia td {
 	padding: .75em 1.75em 0;
+	border-bottom: 1px solid #888; 
+}
+.ride-req span img {
+	width: 30%;
+	height: 30%;
+	border-radius: 100%;
+	margin: 5% 35%;
+	float: left;
+}
+.ride-req span {
+	margin: 10px 0;
+	width: 100%;
+	display: block;
+	text-align: center;
+}
+.ride-req {
+	box-shadow: 2px 2px 8px #888;
+	border-radius: 2px;
+}
+
+.req button {
+	border: 1px;
+	cursor: pointer;
+	padding: 5px 10px;
+	margin-bottom: 5%;
+}
+.yes {
+	background-color: #2eb281;
+}
+.no {
+	background-color: #ff785b;
+}
+.offer {
+	width: 80%;
+	text-align: center;
+	margin: 3px 10%;
+}
+.offer label{
+	display: block;
+}
+.inputs button{
+	margin: 5px 0; 
 }
