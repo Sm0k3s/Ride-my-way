@@ -1,13 +1,13 @@
 """Dummy data for the app"""
 
 users = [
-		  {'_id':1,
+		  {'user_id':1,
 		   'name':'john',
 		   'email':'john@john.com',
 		   'password':'john123'
 	   },
 		  {
-		   '_id':2,
+		   'user_id':2,
 		   'name':'jon',
 		   'email':'jon@jon.com',
 		   'password':'jon123'
