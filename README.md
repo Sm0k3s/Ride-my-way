@@ -1,11 +1,10 @@
 # RIDE MY WAY API
-
+[![Build Status](https://travis-ci.org/Sm0k3s/Ride-my-way.svg?branch=master)](https://travis-ci.org/Sm0k3s/Ride-my-way)
 ## Description
 
 An API that enables CRUD methods for creating rides and accessing users for the ride my way app
 
 ## Installation
-[![Build Status](https://travis-ci.org/Sm0k3s/Ride-my-way.svg?branch=master)](https://travis-ci.org/Sm0k3s/Ride-my-way)
 
 * Clone this repo 
 
