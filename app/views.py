@@ -6,9 +6,9 @@ class Rides(Resource):
     """Resource for /api/v1/rides"""
     def get(self):
         """Method to get all rides"""
-        return {'rides':rides}
-    @staticmethod
-    def post():
+        return {'All rides':rides}
+    
+    def post(self):
         request_data = request.get_json()
         ride = {
             'location': request_data['location'],
@@ -25,3 +25,4 @@ class Ride(Resource):
             if ride['ride_id'] == ride_id:
                 return ride
         return {'ride': 'not found'}, 404
+

@@ -31,6 +31,7 @@ class ApiTests(unittest.TestCase):
         resp = self.client.get('/api/v1/rides')
         self.assertEqual(resp.status_code, 200)
     
+
     def test_can_create_a_ride(self):
         """Test api can create a ride"""
         newride = self.ride
@@ -65,7 +66,7 @@ class ApiTests(unittest.TestCase):
 
     def test_can_create_a_user(self):
         """Test api can create a user"""
-        resp = self.client.post('api/v1/auth/users', data=json.dumps(self.user), content_type='application/json')
+        resp = self.client.post('api/v1/users', data=json.dumps(self.user), content_type='application/json')
         self.assertEqual(resp.status_code, 201)
 
 if __name__=='__main__':
