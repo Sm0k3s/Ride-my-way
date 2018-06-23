@@ -32,3 +32,14 @@ class Users(Resource):
     def get(self):
         """Method to get all users"""
         return {'All users':users}
+
+    def post(self):
+        """Method to add a user"""
+        request_data = request.get_json()
+        user = {
+            'name': request_data['name'],
+            'email': request_data['email'],
+            'password': request_data['password']
+        }
+        users.append(user)
+        return {'user': user}, 201
