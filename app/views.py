@@ -27,3 +27,8 @@ class Ride(Resource):
                 return ride
         return {'ride': 'not found'}, 404
 
+class Users(Resource):   
+    """Resource for /api/v1/users"""
+    def get(self):
+        """Method to get all users"""
+        return {'All users':users}
