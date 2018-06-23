@@ -9,6 +9,7 @@ class Rides(Resource):
         return {'All rides':rides}
     
     def post(self):
+        """Method to create a ride offer"""
         request_data = request.get_json()
         ride = {
             'location': request_data['location'],
