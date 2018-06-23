@@ -10,4 +10,4 @@ api.add_resource(Ride, '/api/v1/rides/<int:ride_id>')
 api.add_resource(Rides, '/api/v1/rides')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
