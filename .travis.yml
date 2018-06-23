@@ -2,8 +2,9 @@ language: python
 
 install:
   - pip install -r requirements.txt
-
+  - pip install coveralls
 script: 
-  - py.test
+  - py.test --with-coverage
 
-after_success: "coveralls"
+after_success: 
+  - coveralls
