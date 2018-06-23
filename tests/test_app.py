@@ -62,6 +62,7 @@ class ApiTests(unittest.TestCase):
     def test_get_a_user_by_id(self):
         """Test api can get a user by id"""
         resp = self.client.get('/api/v1/users/<int:user_id>')
+        self.assertIn(str('micko'), self.user)
         self.assertEqual(resp.status_code, 200)
 
     def test_can_create_a_user(self):

@@ -21,7 +21,7 @@ class Rides(Resource):
 class Ride(Resource):
     """Resource for /api/v1/rides/<int:ride_id>"""
     def get(self, ride_id):
-        """Method to a single ride by id"""
+        """Method to get a single ride by id"""
         for ride in rides:
             if ride['ride_id'] == ride_id:
                 return ride
@@ -43,3 +43,12 @@ class Users(Resource):
         }
         users.append(user)
         return {'user': user}, 201
+
+class User(Resource):
+    """Resource for /api/v1/user/<int:user_id>"""
+    def get(self, user_id):
+        """Method to a single user by id"""
+        for user in users:
+            if user['user_id'] == user_id:
+                return user
+        return {'user': 'not found'}, 404
