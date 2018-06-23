@@ -4,6 +4,6 @@ install:
   - pip install -r requirements.txt
 
 script: 
-  - pytest --with-coverage
+  - nosetests --with-coverage
 
 after_success: "coveralls"
