@@ -3,5 +3,7 @@ language: python
 install:
   - pip install -r requirements.txt
 
-script: "echo TODO"
+script: "coverage run pytest"
 
+after_success:
+  - coveralls
