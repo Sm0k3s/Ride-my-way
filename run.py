@@ -13,4 +13,4 @@ api.add_resource(User, '/api/v1/users/<int:user_id>')
 api.add_resource(Users, '/api/v1/users')
 
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0')
+    app.run()

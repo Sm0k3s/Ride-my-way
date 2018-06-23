@@ -1,5 +1,6 @@
 # RIDE MY WAY API
 [![Build Status](https://travis-ci.org/Sm0k3s/Ride-my-way.svg?branch=master)](https://travis-ci.org/Sm0k3s/Ride-my-way)
+[![Coverage Status](https://coveralls.io/repos/github/Sm0k3s/Ride-my-way/badge.svg?branch=master)](https://coveralls.io/github/Sm0k3s/Ride-my-way?branch=master)
 ## Description
 
 An API that enables CRUD methods for creating rides and accessing users for the ride my way app
@@ -12,11 +13,11 @@ An API that enables CRUD methods for creating rides and accessing users for the 
 $ git clone https://github.com/sm0k3s/ride-my-way.git
 ```
 * Cd into it
-* Make a virtual environment 
+* Make a virtual environment and activate it
 
 ```bash
 $ virtualenv venv
-
+$ venv/bin/activate
 ```
 * Install the dependencies 
 
