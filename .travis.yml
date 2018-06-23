@@ -3,7 +3,7 @@ language: python
 install:
   - pip install -r requirements.txt
 
-script: "coverage run pytest"
+script: 
+  - pytest --with-coverage
 
-after_success:
-  - coveralls
+after_success: "coveralls"
