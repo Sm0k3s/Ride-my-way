@@ -1,6 +1,6 @@
 import unittest
 import json
-from app import app
+from run import app
 
 class ApiTests(unittest.TestCase):
     """Testing for rides"""
