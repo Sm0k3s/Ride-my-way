@@ -62,4 +62,8 @@ class User(Resource):
 class Asking(Resource):
     """Resource for /api/v1/<int:ride_id>/requests"""
     def post(self, ride_id):
-        pass     
+        for ride in rides:
+            if ride['ride_id'] == ride_id:
+                requests.append(ride)
+        return {'request':'not found'}, 404
+

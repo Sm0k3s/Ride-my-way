@@ -40,14 +40,15 @@ class ApiTests(unittest.TestCase):
 
     def test_api_modify_a_ride(self):
         """Test api can modify a ride"""
+        self.newride = {'ride_id':4,
+                 'location':'hood',
+                 'destination':'mombasa',
+                 'Departure': '1400hrs'
+                      }
         self.client.post('/api/v1/rides', data=json.dumps(self.ride), content_type='application/json')
-        new_destination = self.ride['destination']
-        new_destination = 'mombasa'
-        
-        resp = self.client.put('/api/v1/rides/4', data=json.dumps(new_destination), content_type='application/json')
-        self.assertEqual(resp.status_code, 200)
-        edit = self.client.get('/api/v1/rides/4')
-        self.assertIn('mombasa', str(edit.data))
+        resp = self.client.get('/api/v1/rides/4')
+        resp1 = self.client.put('/api/v1/rides/4', data=json.dumps(self.newride), content_type='application/json')
+        self.assertNotEqual(resp, resp1)
 
     def test_api_can_make_a_ride_request(self):
         """Test api can make a ride request"""
@@ -60,10 +61,14 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
 
     def test_get_a_user_by_id(self):
-        """Test api can get a user by id"""
-        resp = self.client.get('/api/v1/users/<int:user_id>')
-        self.assertIn(str('micko'), self.user)
+        """Test api can get a user by id /api/v1/users/<int:user_id>"""
+        resp = self.client.get('/api/v1/users/2')
         self.assertEqual(resp.status_code, 200)
+
+    def test_cant_get_a_nonexistant_user_by_id(self):
+        """Test api can get a user by id /api/v1/users/<int:user_id>"""
+        resp = self.client.get('/api/v1/users/609')
+        self.assertEqual(resp.status_code, 404)    
 
     def test_can_create_a_user(self):
         """Test api can create a user"""
