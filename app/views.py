@@ -10,11 +10,14 @@ class Rides(Resource):
     
     def post(self):
         """Method to create a ride offer"""
+        _id =len(rides) + 1
+        ride_id = {'ride_id':_id}
         request_data = request.get_json()
         ride = {
             'location': request_data['location'],
             'destination': request_data['destination']
         }
+        ride.update(ride_id)
         rides.append(ride)
         return {'ride': ride}, 201
 
@@ -35,12 +38,15 @@ class Users(Resource):
 
     def post(self):
         """Method to add a user"""
+        _id =len(users) + 1
+        user_id = {'user_id':_id}
         request_data = request.get_json()
         user = {
             'name': request_data['name'],
             'email': request_data['email'],
             'password': request_data['password']
         }
+        user.update(user_id)
         users.append(user)
         return {'user': user}, 201
 
@@ -52,3 +58,8 @@ class User(Resource):
             if user['user_id'] == user_id:
                 return user
         return {'user': 'not found'}, 404
+
+class Asking(Resource):
+    """Resource for /api/v1/<int:ride_id>/requests"""
+    def post(self, ride_id):
+        pass     

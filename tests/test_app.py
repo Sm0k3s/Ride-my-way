@@ -70,5 +70,9 @@ class ApiTests(unittest.TestCase):
         resp = self.client.post('api/v1/users', data=json.dumps(self.user), content_type='application/json')
         self.assertEqual(resp.status_code, 201)
 
+    def test_drivers_can_get_requests(self):
+        resp = self.client.get('/api/v1/drivers/requests')
+        self.assertEqual(resp.status_code, 200)
+
 if __name__=='__main__':
     unittest.main()
