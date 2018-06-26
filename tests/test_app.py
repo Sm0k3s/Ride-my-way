@@ -52,8 +52,8 @@ class ApiTests(unittest.TestCase):
 
     def test_api_can_make_a_ride_request(self):
         """Test api can make a ride request"""
-        resp = self.client.post('/api/v1/<int:ride_id>/requests')
-        self.assertEqual(resp.status_code, 201)
+        resp = self.client.get('/api/v1/<int:ride_id>/requests')
+        self.assertEqual(resp.status_code, 200)
 
     def test_get_all_users(self):
         """Test api can get all users"""
@@ -65,7 +65,7 @@ class ApiTests(unittest.TestCase):
         resp = self.client.get('/api/v1/users/2')
         self.assertEqual(resp.status_code, 200)
 
-    def test_cant_get_a_nonexistant_user_by_id(self):
+    def test_cannot_get_a_nonexistant_user_by_id(self):
         """Test api can get a user by id /api/v1/users/<int:user_id>"""
         resp = self.client.get('/api/v1/users/609')
         self.assertEqual(resp.status_code, 404)    
@@ -76,8 +76,18 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(resp.status_code, 201)
 
     def test_drivers_can_get_requests(self):
+        """Test api can get a request"""
         resp = self.client.get('/api/v1/drivers/requests')
         self.assertEqual(resp.status_code, 200)
+
+    def test_user_registration(self):
+        """ Test api can register a user /api/auth/register"""
+        new_user = {'username':'Acebeats',
+                     'password':'deal321'}
+        resp = self.client.post('/api/v1/auth/register', data=json.dumps(new_user), content_type='application/json')
+        self.assertEqual(resp.status_code, 201)
+    def test_user_logout(self):
+        pass
 
 if __name__=='__main__':
     unittest.main()
