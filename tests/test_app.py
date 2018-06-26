@@ -50,11 +50,6 @@ class ApiTests(unittest.TestCase):
         resp1 = self.client.put('/api/v1/rides/4', data=json.dumps(self.newride), content_type='application/json')
         self.assertNotEqual(resp, resp1)
 
-    def test_api_can_make_a_ride_request(self):
-        """Test api can make a ride request"""
-        resp = self.client.get('/api/v1/<int:ride_id>/requests')
-        self.assertEqual(resp.status_code, 200)
-
     def test_get_all_users(self):
         """Test api can get all users"""
         resp = self.client.get('/api/v1/users')
@@ -80,12 +75,6 @@ class ApiTests(unittest.TestCase):
         resp = self.client.get('/api/v1/drivers/requests')
         self.assertEqual(resp.status_code, 200)
 
-    def test_user_registration(self):
-        """ Test api can register a user /api/auth/register"""
-        new_user = {'username':'Acebeats',
-                     'password':'deal321'}
-        resp = self.client.post('/api/v1/auth/register', data=json.dumps(new_user), content_type='application/json')
-        self.assertEqual(resp.status_code, 201)
     def test_user_logout(self):
         pass
 
