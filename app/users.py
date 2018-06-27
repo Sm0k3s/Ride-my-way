@@ -8,5 +8,5 @@ class User():
         self.password = password
 
     def find_by_username(self, username):
-        connection = psycopg2.connect('ridemyway.db')
-        cursor = connection.cursor()
+        conn = psycopg2.connect('ridemyway.db')
+        cur = conn.cursor()

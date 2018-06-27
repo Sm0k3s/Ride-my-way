@@ -12,7 +12,7 @@ class TestingConfig(Config):
 	DEBUG = True
 
 class StagingConfig(Config):
-	"""Configurations for config"""
+	"""Configurations for staging"""
 	DEBUG = True
 
 class ProductionConfig(Config):

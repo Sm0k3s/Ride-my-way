@@ -1,6 +1,5 @@
 """"""
 from flask_restful import Resource,request
-from data import users, rides, ride_requests
 
 class Rides(Resource):   
     """Resource for /api/v1/rides"""
@@ -22,7 +21,10 @@ class Rides(Resource):
         return {'ride': ride}, 201
 
 class Ride(Resource):
-    """Resource for /api/v1/rides/<int:ride_id>"""
+    """
+    Resource for fetching the details of a single ride
+    endpoint = /api/v1/rides/<int:ride_id>
+    """
     def get(self, ride_id):
         """Method to get a single ride by id"""
         for ride in rides:
@@ -59,8 +61,11 @@ class User(Resource):
                 return user
         return {'user': 'not found'}, 404
 
-class Request_ride(Resource):
-    """Resource for /api/v1/<int:ride_id>/requests"""
+class RequestRide(Resource):
+    """
+    Resource for endpoint /api/v1/<int:ride_id>/requests
+    
+    """
     def get(self, ride_id):
         for ride in rides:
             if ride['ride_id'] == ride_id:
@@ -76,7 +81,7 @@ class Login(Resource):
             if user['name'] == username and user['password'] == password:
                 return {'login': 'successful'}
 
-class Driver_requests(Resource):
+class DriverRequests(Resource):
     """REsource for all requests posted /api/v1/drivers/requests"""
     def get(self):
         return {'All requests': ride_requests}

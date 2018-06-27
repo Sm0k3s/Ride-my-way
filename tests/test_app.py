@@ -56,7 +56,11 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
 
     def test_get_a_user_by_id(self):
-        """Test api can get a user by id /api/v1/users/<int:user_id>"""
+        """
+        Test api can get a user by id /api/v1/, db
+        from flask import current_app
+        users/<int:user_id>
+        """
         resp = self.client.get('/api/v1/users/2')
         self.assertEqual(resp.status_code, 200)
 
@@ -67,25 +71,33 @@ class ApiTests(unittest.TestCase):
 
     def test_can_create_a_user(self):
         """Test api can create a user"""
-        resp = self.client.post('api/v1/users', data=json.dumps(self.user), content_type='application/json')
+        self.client.get('/api/v1/users')
+        resp = self.client.post('/api/v1/users', data=json.dumps(self.user), content_type='application/json')
         self.assertEqual(resp.status_code, 201)
 
     def test_user_login(self):
-        """Test that login is okay /api/v1/login"""
-        self.app.get('/api/v1/register')
+        """Test that login is okay /api/v1/auth/login"""
+        self.app.get('/api/v1/auth/signup')
         resp = self.app.post('/api/v1/auth/login',
             data=json.dumps(self.user),
             content_type='application/json'
             )
         self.assertEqual(resp.status_code, 200)
 
+    def test_register_a_user(self):
+        """Test registration is as expected /api/v1/auth/signup"""
+        resp = self.client.post('/api/v1/auth/signup', data=json.dumps(self.user), content_type='application/json')
+        self.assertEqual(resp.status_code, 201)
+
     def test_drivers_can_get_requests(self):
-        """Test api can get a request"""
-        resp = self.client.get('/api/v1/drivers/requests')
+        """Test api can get a request /api/v1/users/rides/<int:ride_id>"""
+        resp = self.client.get('/api/v1/users/rides/<int:ride_id>/requests')
         self.assertEqual(resp.status_code, 200)
 
     def test_user_logout(self):
-        pass
+        """Test for logout of users /api/v1/logout"""
+        resp = self.client.post('/api/v1/logout', data=json.dumps(self.user), content_type='application/json')
+        self.assertEqual(resp.status_code, 200)
 
 if __name__=='__main__':
     unittest.main()
