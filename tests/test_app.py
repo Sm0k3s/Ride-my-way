@@ -75,10 +75,14 @@ class ApiTests(unittest.TestCase):
         resp = self.client.post('/api/v1/users', data=json.dumps(self.user), content_type='application/json')
         self.assertEqual(resp.status_code, 201)
 
+    def test_user_signup(self):
+        resp = self.client.post('/api/v1/auth/signup', data=json.dumps(self.user), content_type='application/json') 
+        self.assertEqual(resp.status_code, 201)
+        
     def test_user_login(self):
         """Test that login is okay /api/v1/auth/login"""
-        self.app.get('/api/v1/auth/signup')
-        resp = self.app.post('/api/v1/auth/login',
+        self.client.get('/api/v1/auth/signup')
+        resp = self.client.post('/api/v1/auth/login',
             data=json.dumps(self.user),
             content_type='application/json'
             )

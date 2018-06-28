@@ -31,7 +31,7 @@ $ pip install -r requirements.txt
  $ python run.py
  ```
 
-* Test the endpoints are work on Postman/Curl
+* Test the endpoints are working on Postman/Curl
 
 ## Running tests
 ```bash

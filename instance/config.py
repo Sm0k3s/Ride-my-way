@@ -1,4 +1,8 @@
 
+app.config['SECRET_KEY'] = 'itsasecretshhh'
+
+db = "dbname='ridemyway' user='postgres' host='localhost' password='smokes'"
+
 class Config(object):
 	DEBUG = False
 

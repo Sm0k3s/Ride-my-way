@@ -1,12 +1,53 @@
-""""""
-from flask_restful import Resource,request
+from flask_jwt import JWT
+from flask_restful import Resource,request, reqparse
+from flask_jwt import JWT, jwt_required
+import psycopg2
+
+
+#Saves the database in a variable
+db = "dbname='test' user='postgres' host='localhost' password='smokes'"
+
+class Signup(Resource):
+    """ Resource for signing up /api/v1/auth/signup"""
+    parser = reqparse.RequestParser()
+    parser.add_argument('username',
+        type=str,
+        required=True,
+        help="You must provide a username."
+    )
+    parser.add_argument('password',
+        type=str,
+        required=True,
+        help="You must provide a password."
+    )
+   
+    def post(self):
+        data = Signup.parser.parse_args()
+
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
+        query = "INSERT INTO users VALUES (NULL, %S, %S)"
+        cur.execute(query, (data['username'], data['password']))
+
+        conn.commit()
+        conn.close()
 
 class Rides(Resource):   
     """Resource for /api/v1/rides"""
+     #@jwt_required()
     def get(self):
         """Method to get all rides"""
-        return {'All rides':rides}
-    
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+        
+        result = cur.execute("SELECT * FROM rides")
+        all_rides
+        for row in result:
+            all_rides.append({'id': row[0], 'destination': row[1], 'location': row[2], 'time': row[3], 'date': row[4]})
+        conn.close()
+        return {'rides': all_rides}
+        
     def post(self):
         """Method to create a ride offer"""
         _id =len(rides) + 1
@@ -53,7 +94,7 @@ class Users(Resource):
         return {'user': user}, 201
 
 class User(Resource):
-    """Resource for /api/v1/user/<int:user_id>"""
+    """Resource to get single userfor /api/v1/users/<int:user_id>"""
     def get(self, user_id):
         """Method to a single user by id"""
         for user in users:
@@ -75,6 +116,7 @@ class RequestRide(Resource):
 
 class Login(Resource):
     """resouurce for /api/v1/auth/login"""
+
     def post(self,username,password):
         request_data = request.get_json()
         for user in users:
