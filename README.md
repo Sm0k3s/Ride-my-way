@@ -37,3 +37,15 @@ $ pip install -r requirements.txt
 ```bash
 $ pytest
 ```
+## Endpoints
+| Endpoints                                      | Description                                      |
+|------------------------------------------------|--------------------------------------------------|
+| POST /api/v1/auth/signup                       | Register user                                    |
+| POST /api/v1/auth/login                        | Log in user                                      |
+| POST /api/v1/auth/logout                       | Log out user                                     |
+| GET /rides								     |	Fetch all available rides						|
+| GET /rides/<rideId>						|	Fetch the details of a single ride	|
+| POST /rides/<rideId>/requests | Make a ride request 			 |
+| POST /users/rides		|Create a ride offer 	|
+| GET /users/rides/<rideId>/requests		|	Fetch all ride requests 			|
+| PUT /users/rides/<rideId>/requests/<requestId> 	| Accept or reject a ride request. 	|

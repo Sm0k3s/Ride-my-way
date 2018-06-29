@@ -1,9 +1,9 @@
 from flask_jwt import JWT
 from flask_restful import Resource,request, reqparse
 from flask_jwt import JWT, jwt_required
+from werkzeug.security import safe_str_cmp
 import psycopg2
 from models import UserModel, RideModel
-
 
 #Saves the database in a db variable
 db = "dbname='test' user='postgres' host='localhost' password='smokes'"
@@ -34,9 +34,10 @@ class Signup(Resource):
         conn.commit()
         conn.close()
 
+
 class Rides(Resource):   
     """Resource for /api/v1/rides"""
-     #@jwt_required()
+    @jwt_required()
     def get(self):
         """Method to get all rides"""
         conn = psycopg2.connect(db)
@@ -56,24 +57,48 @@ class Rides(Resource):
         conn.close()
         return {'rides': all_rides}
 
-#     def post(self):
-#         """Method to create a ride offer"""
-#         _id =len(rides) + 1
-#         ride_id = {'ride_id':_id}
-#         request_data = request.get_json()
-#         ride = {
-#             'location': request_data['location'],
-#             'destination': request_data['destination']
-#         }
-#         ride.update(ride_id)
-#         rides.append(ride)
-#         return {'ride': ride}, 201
+class Offer(Resource):
+    """Endpoint to create ride offer"""
+    parser = reqparse.RequestParser()
+    parser.add_argument('id',
+        type=str,
+        required=False,
+        help="Identity"
+    )
+    parser.add_argument('destination',
+        type=str,
+        required=True,
+        help="You must provide a destination."
+    )
+    parser.add_argument('location',
+        type=str,
+        required=True,
+        help="You must provide a location."
+    )
+    parser.add_argument('time',
+        type=str,
+        required=True,
+        help="You must provide departure time."
+    )
+    parser.add_argument('date',
+        type=str,
+        required=True,
+        help="You must provide a date."
+    )
+
+    def post(self):
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
+        query = "INSERT INTO rides VALUES (NULL, %s, %s, %s, %s)"
+        cur.execute(query, (data['destination'], data['']))
+
 
 class Ride(Resource):
-#     """
-#     Resource for fetching the details of a single ride
-#     endpoint = /api/v1/rides/<int:ride_id>
-#     """
+    """
+    Resource for fetching the details of a single ride
+    endpoint = /api/v1/rides/<int:ride_id>
+    """
     def get(self, ride_id):
         """Method to get a single ride by id"""
         conn = psycopg2.connect(db)
@@ -88,26 +113,7 @@ class Ride(Resource):
             ride = None
 
         conn.close
-        return user
-# class Users(Resource):   
-#     """Resource for /api/v1/users"""
-#     def get(self):
-#         """Method to get all users"""
-#         return {'All users':users}
-
-#     def post(self):
-#         """Method to add a user"""
-#         _id =len(users) + 1
-#         user_id = {'user_id':_id}
-#         request_data = request.get_json()
-#         user = {
-#             'name': request_data['name'],
-#             'email': request_data['email'],
-#             'password': request_data['password']
-#         }
-#         user.update(user_id)
-#         users.append(user)
-#         return {'user': user}, 201
+        return ride
 
 class Users(Resource):   
     """Resource for /api/v1/users"""
@@ -129,14 +135,6 @@ class Users(Resource):
         conn.close()
         return {'users': all_users}
 
-# class User(Resource):
-#     """Resource to get single userfor /api/v1/users/<int:user_id>"""
-#     def get(self, user_id):
-#         """Method to a single user by id"""
-#         for user in users:
-#             if user['user_id'] == user_id:
-#                 return user
-#         return {'user': 'not found'}, 404
 
 class RequestRide(Resource):
     """
@@ -150,20 +148,32 @@ class RequestRide(Resource):
         query = "SELECT * FROM rides WHERE id=%s"
         cur.execute(query, (ride_id,))
 
-        #requests.append(ride)
-
         return {'request':'not found'}, 404
 
-# class Login(Resource):
-#     """resouurce for /api/v1/auth/login"""
+class Login(Resource):
+    """resouurce for /api/v1/auth/login"""
+    parser = reqparse.RequestParser()
+    parser.add_argument('username',
+        type=str,
+        required=True,
+        help="You must provide a username."
+    )
+    parser.add_argument('password',
+        type=str,
+        required=True,
+        help="You must provide a password."
+    )
 
-#     def post(self,username,password):
-#         request_data = request.get_json()
-#         for user in users:
-#             if user['name'] == username and user['password'] == password:
-#                 return {'login': 'successful'}
+    def post(self):
+        conn = psycopg2.connect()
+        cur = conn.cursor()
 
-# class DriverRequests(Resource):
-#     """REsource for all requests posted /api/v1/drivers/requests"""
-#     def get(self):
-#         return {'All requests': ride_requests}
+        query = "SELECT * FROM users WHERE username=%s"
+        cur.execute(query, (data['username'],))
+        result = cur.fetchone()
+        for row in result:
+            if data['username'] ==row[1] and data['password'] == row[2]:
+                return {'login': 'Successful'}
+            else:
+                pass                
+
