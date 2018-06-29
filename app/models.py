@@ -18,12 +18,14 @@ class UserModel():
         cur = conn.cursor
 
     @classmethod
-    def find_user_by_id(cls, username):
-        """Method to find user by id"""
-        
+    def find_by_username(cls, username):
+        """Method to find user by username"""
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
         query = "SELECT * FROM users WHERE username=%s"
-        result = cursor.execute(query, (username,))
-        row = result.fetchone()
+        result = cur.execute(query, (username,))
+        row = cur.fetchone()
         if row is not None:
             user = cls(row[0], row[1], row[2])
         else:
@@ -33,12 +35,14 @@ class UserModel():
         return user
 
     @classmethod
-    def find_user_by_id(cls, _id):
+    def find_by_id(cls, _id):
         """Method to find user by id"""
-        
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
         query = "SELECT * FROM users WHERE id=%s"
-        result = cursor.execute(query, (_id,))
-        row = result.fetchone()
+        result = cur.execute(query, (_id,))
+        row = cur.fetchone()
         if row is not None:
             user = cls(row[0], row[1], row[2])
         else:
@@ -61,10 +65,12 @@ class RideModel():
 
     @classmethod
     def find_ride_by_id(cls, _id):
-        """Method to find user by id"""
-        
+        """Method to find ride by id"""
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
         query = "SELECT * FROM rides WHERE id=%s"
-        result = cursor.execute(query, (_id,))
+        result = cur.execute(query, (_id,))
         row = result.fetchone()
         if row is not None:
             user = cls(row[0], row[1], row[2])
@@ -73,3 +79,7 @@ class RideModel():
 
         conn.close
         return user
+
+    #def delete_ride(self, id):
+
+
