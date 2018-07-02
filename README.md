@@ -43,9 +43,9 @@ $ pytest
 | POST /api/v1/auth/signup                       | Register user                                    |
 | POST /api/v1/auth/login                        | Log in user                                      |
 | POST /api/v1/auth/logout                       | Log out user                                     |
-| GET /rides								     |	Fetch all available rides						|
-| GET /rides/<rideId>						|	Fetch the details of a single ride	|
-| POST /rides/<rideId>/requests | Make a ride request 			 |
-| POST /users/rides		|Create a ride offer 	|
-| GET /users/rides/<rideId>/requests		|	Fetch all ride requests 			|
-| PUT /users/rides/<rideId>/requests/<requestId> 	| Accept or reject a ride request. 	|
+| GET /api/v1/rides								     |	Fetch all available rides						|
+| GET /api/v1/rides/<rideId>						|	Fetch the details of a single ride	|
+| POST /api/v1/rides/<rideId>/requests | Make a ride request 			 |
+| POST /api/v1/users/rides		|Create a ride offer 	|
+| GET /api/v1/users/rides/<rideId>/requests		|	Fetch all ride requests 			|
+| PUT /api/v1/users/rides/<rideId>/requests/<requestId> 	| Accept or reject a ride request. 	|

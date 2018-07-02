@@ -33,7 +33,7 @@ class Signup(Resource):
 
         conn.commit()
         conn.close()
-
+        return {'Message': 'Account created Successfully'}, 201
 
 class Rides(Resource):   
     """Resource for /api/v1/rides"""
@@ -55,7 +55,7 @@ class Rides(Resource):
                 'date': row[4]}
                 )
         conn.close()
-        return {'rides': all_rides}
+        return {'rides': all_rides}, 200
 
 class Offer(Resource):
     """Endpoint to create ride offer"""
@@ -91,7 +91,10 @@ class Offer(Resource):
         cur = conn.cursor()
 
         query = "INSERT INTO rides VALUES (NULL, %s, %s, %s, %s)"
-        cur.execute(query, (data['destination'], data['']))
+        cur.execute(query, (data['destination'], data['location'],data['time'], data['date']))
+
+        return {'Message': 'Your ride offer has been successfully created'}
+
 
 
 class Ride(Resource):
@@ -113,7 +116,7 @@ class Ride(Resource):
             ride = None
 
         conn.close
-        return ride
+        return ride, 200
 
 class Users(Resource):   
     """Resource for /api/v1/users"""
@@ -147,8 +150,9 @@ class RequestRide(Resource):
 
         query = "SELECT * FROM rides WHERE id=%s"
         cur.execute(query, (ride_id,))
+        result = cur.fetchone()
 
-        return {'request':'not found'}, 404
+        return {'Request':'not found'}, 404
 
 class Login(Resource):
     """resouurce for /api/v1/auth/login"""
