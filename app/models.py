@@ -77,6 +77,7 @@ class RideModel():
     def __init__(self, _id, destination, location, date, time ):
         self.id = _id
         self.destination = destination
+        self.location = location
         self.date = date
         self.time = time
 
@@ -111,7 +112,7 @@ class RideModel():
         result = cur.execute(query, (_id,))
         row = result.fetchone()
         if row is not None:
-            ride = cls(row[0], row[1], row[2])
+            ride = cls(row[0], row[1], row[2],row[3], row[4])
         else:
             ride = None
 

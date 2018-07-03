@@ -116,13 +116,18 @@ class Ride(Resource):
 
         query = "SELECT * FROM rides WHERE id=%s"
         result = cur.execute(query, (ride_id,))
+
         row = cur.fetchone()
         if row is not None:
-            ride = RideModel(*row)
-        else:
-            ride = None
+            ride ={
+                'id': row[0],
+                'destination': row[1],
+                'location': row[2],
+                'date': row[3],
+                'time': row[4]
+                }
 
-        conn.close
+        conn.close()
         return ride, 200
 
 class Users(Resource):   
@@ -156,35 +161,16 @@ class RequestRide(Resource):
 
         query = "SELECT * FROM rides WHERE id=%s"
         cur.execute(query, (ride_id,))
-        result = cur.fetchone()
+        row = cur.fetchone()
+        if row:
+            request_ = {
+                'id': row[0],
+                'destination': row[1],
+                'location': row[2],
+                'date': row[3],
+                'time': row[4]
+                }
+            return {'A request has sent for':request_}
 
         return {'Request':'not found'}, 404
-
-# class Login(Resource):
-#     """resouurce for /api/v1/auth/login"""
-#     parser = reqparse.RequestParser()
-#     parser.add_argument('username',
-#         type=str,
-#         required=True,
-#         help="You must provide a username."
-#     )
-#     parser.add_argument('password',
-#         type=str,
-#         required=True,
-#         help="You must provide a password."
-#     )
-
-#     def post(self):
-#         data = Login.parser.parse_args()
-
-#         conn = psycopg2.connect(db)
-#         cur = conn.cursor()
-
-#         query = "SELECT * FROM users WHERE username=%s"
-#         cur.execute(query, (data['username'],))
-#         result = cur.fetchone()
-#         for row in result:
-#             if data['username'] ==row[1] and data['password'] == row[2]:
-#                 return {'login': 'Successful'}
-#             return {'Message': 'Account not found, please sign up'}               
 
