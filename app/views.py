@@ -8,6 +8,7 @@ from models import UserModel, RideModel
 #Saves the database in a db variable
 db = "dbname='test' user='postgres' host='localhost' password='smokes'"
 
+
 class Signup(Resource):
     """ Resource for signing up /api/v1/auth/signup"""
     parser = reqparse.RequestParser()
@@ -31,12 +32,13 @@ class Signup(Resource):
         conn = psycopg2.connect(db)
         cur = conn.cursor()
 
-        query = "INSERT INTO users VALUES (NULL, %s, %s)"
+        query = "INSERT INTO users VALUES (DEFAULT, %s, %s)"
         cur.execute(query, (data['username'], data['password']))
 
         conn.commit()
         conn.close()
         return {'Message': 'Account created Successfully'}, 201
+
 
 class Rides(Resource):   
     """Resource for /api/v1/rides"""
@@ -93,53 +95,13 @@ class Rides(Resource):
         conn = psycopg2.connect(db)
         cur = conn.cursor()
 
-        query = "INSERT INTO rides VALUES (NULL, %s, %s, %s, %s)"
+        query = "INSERT INTO ride_offers VALUES (DEFAULT, %s, %s, %s, %s)"
         cur.execute(query, (data['destination'], data['location'],data['time'], data['date']))
 
         conn.commit()
         conn.close()
 
         return {'Message': 'Your ride offer has been successfully created'}
-
-
-# class Offer(Resource):
-#     """Endpoint to create ride offer"""
-#     parser = reqparse.RequestParser()
-#     parser.add_argument('id',
-#         type=str,
-#         required=False,
-#         help="Identity"
-#     )
-#     parser.add_argument('destination',
-#         type=str,
-#         required=True,
-#         help="You must provide a destination."
-#     )
-#     parser.add_argument('location',
-#         type=str,
-#         required=True,
-#         help="You must provide a location."
-#     )
-#     parser.add_argument('time',
-#         type=str,
-#         required=True,
-#         help="You must provide departure time."
-#     )
-#     parser.add_argument('date',
-#         type=str,
-#         required=True,
-#         help="You must provide a date."
-#     )
-
-    # def post(self):
-    #     conn = psycopg2.connect(db)
-    #     cur = conn.cursor()
-
-    #     query = "INSERT INTO rides VALUES (NULL, %s, %s, %s, %s)"
-    #     cur.execute(query, (data['destination'], data['location'],data['time'], data['date']))
-
-    #     return {'Message': 'Your ride offer has been successfully created'}
-
 
 
 class Ride(Resource):

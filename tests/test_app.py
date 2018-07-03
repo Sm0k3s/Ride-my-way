@@ -9,17 +9,23 @@ class ApiTests(unittest.TestCase):
         self.app = app
         self.client = self.app.test_client()
         self.ride = {
-                      'ride_id':4,
-                      'location':'mtaani',
-                      'destination':'mayolo',
-                      'Departure': '1900hrs'
-                      }
+            'ride_id':4,
+            'location':'mtaani',
+            'destination':'mayolo',
+            'Departure': '1900hrs'
+            }
         self.user = {
            'user_id':3,
            'name':'micko',
            'email':'mickoo@micko.com',
            'password':'deal123'
-    }
+           }
+
+        self.logged_in = {
+            "username":"smok",
+            "password":"pass"
+            }
+            
 
     def tearDown(self):
         """Destroys the test client when done"""

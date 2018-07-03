@@ -18,7 +18,7 @@ class UserModel():
         conn = psycopg2.connect(db)
         cur = conn.cursor
 
-        query ="INSERT INTO users VALUES(NULL, %s, %s)"
+        query ="INSERT INTO users VALUES(DEFAULT, %s, %s)"
         cur.execute(query, (self.username, self.password))
 
         conn.commit()
@@ -84,7 +84,7 @@ class RideModel():
         conn = psycopg2(db)
         cur = conn.cursor
 
-        query ="INSERT INTO users VALUES(NULL, %s, %s)"
+        query ="INSERT INTO users VALUES(DEFAULT, %s, %s)"
         cur.execute(query, (self.destination, self.location, self.time, 
             self.date))
 
