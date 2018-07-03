@@ -25,6 +25,9 @@ class Signup(Resource):
     def post(self):
         data = Signup.parser.parse_args()
 
+        if UserModel.find_by_username(data['username']):
+            return {'Message': 'Username already taken try another one'}, 400
+
         conn = psycopg2.connect(db)
         cur = conn.cursor()
 
@@ -37,28 +40,6 @@ class Signup(Resource):
 
 class Rides(Resource):   
     """Resource for /api/v1/rides"""
-    @jwt_required()
-    def get(self):
-        """Method to get all rides"""
-        conn = psycopg2.connect(db)
-        cur = conn.cursor()
-        
-        cur.execute("SELECT * FROM rides")
-        result = cur.fetchall()
-        all_rides = []
-        for row in result:
-            all_rides.append(
-                {'id': row[0], 
-                'destination': row[1], 
-                'location': row[2], 
-                'time': row[3], 
-                'date': row[4]}
-                )
-        conn.close()
-        return {'rides': all_rides}, 200
-
-class Offer(Resource):
-    """Endpoint to create ride offer"""
     parser = reqparse.RequestParser()
     parser.add_argument('id',
         type=str,
@@ -86,14 +67,78 @@ class Offer(Resource):
         help="You must provide a date."
     )
 
+    @jwt_required()
+    def get(self):
+        """Method to get all rides"""
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+        
+        cur.execute("SELECT * FROM rides")
+        result = cur.fetchall()
+        all_rides = []
+        for row in result:
+            all_rides.append(
+                {'id': row[0], 
+                'destination': row[1], 
+                'location': row[2], 
+                'time': row[3], 
+                'date': row[4]}
+                )
+        conn.close()
+        return {'rides': all_rides}, 200
+
     def post(self):
+        data = Rides.parser.parse_args()
+
         conn = psycopg2.connect(db)
         cur = conn.cursor()
 
         query = "INSERT INTO rides VALUES (NULL, %s, %s, %s, %s)"
         cur.execute(query, (data['destination'], data['location'],data['time'], data['date']))
 
+        conn.commit()
+        conn.close()
+
         return {'Message': 'Your ride offer has been successfully created'}
+
+
+# class Offer(Resource):
+#     """Endpoint to create ride offer"""
+#     parser = reqparse.RequestParser()
+#     parser.add_argument('id',
+#         type=str,
+#         required=False,
+#         help="Identity"
+#     )
+#     parser.add_argument('destination',
+#         type=str,
+#         required=True,
+#         help="You must provide a destination."
+#     )
+#     parser.add_argument('location',
+#         type=str,
+#         required=True,
+#         help="You must provide a location."
+#     )
+#     parser.add_argument('time',
+#         type=str,
+#         required=True,
+#         help="You must provide departure time."
+#     )
+#     parser.add_argument('date',
+#         type=str,
+#         required=True,
+#         help="You must provide a date."
+#     )
+
+    # def post(self):
+    #     conn = psycopg2.connect(db)
+    #     cur = conn.cursor()
+
+    #     query = "INSERT INTO rides VALUES (NULL, %s, %s, %s, %s)"
+    #     cur.execute(query, (data['destination'], data['location'],data['time'], data['date']))
+
+    #     return {'Message': 'Your ride offer has been successfully created'}
 
 
 
@@ -142,7 +187,6 @@ class Users(Resource):
 class RequestRide(Resource):
     """
     Resource for endpoint /api/v1/<int:ride_id>/requests
-    
     """
     def post(self, ride_id):
         conn = psycopg2.connect(db)
@@ -154,30 +198,31 @@ class RequestRide(Resource):
 
         return {'Request':'not found'}, 404
 
-class Login(Resource):
-    """resouurce for /api/v1/auth/login"""
-    parser = reqparse.RequestParser()
-    parser.add_argument('username',
-        type=str,
-        required=True,
-        help="You must provide a username."
-    )
-    parser.add_argument('password',
-        type=str,
-        required=True,
-        help="You must provide a password."
-    )
+# class Login(Resource):
+#     """resouurce for /api/v1/auth/login"""
+#     parser = reqparse.RequestParser()
+#     parser.add_argument('username',
+#         type=str,
+#         required=True,
+#         help="You must provide a username."
+#     )
+#     parser.add_argument('password',
+#         type=str,
+#         required=True,
+#         help="You must provide a password."
+#     )
 
-    def post(self):
-        conn = psycopg2.connect()
-        cur = conn.cursor()
+#     def post(self):
+#         data = Login.parser.parse_args()
 
-        query = "SELECT * FROM users WHERE username=%s"
-        cur.execute(query, (data['username'],))
-        result = cur.fetchone()
-        for row in result:
-            if data['username'] ==row[1] and data['password'] == row[2]:
-                return {'login': 'Successful'}
-            else:
-                pass                
+#         conn = psycopg2.connect(db)
+#         cur = conn.cursor()
+
+#         query = "SELECT * FROM users WHERE username=%s"
+#         cur.execute(query, (data['username'],))
+#         result = cur.fetchone()
+#         for row in result:
+#             if data['username'] ==row[1] and data['password'] == row[2]:
+#                 return {'login': 'Successful'}
+#             return {'Message': 'Account not found, please sign up'}               
 

@@ -111,12 +111,12 @@ class RideModel():
         result = cur.execute(query, (_id,))
         row = result.fetchone()
         if row is not None:
-            user = cls(row[0], row[1], row[2])
+            ride = cls(row[0], row[1], row[2])
         else:
-            user = None
+            ride = None
 
         conn.close()
-        return user
+        return ride
 
     #def delete_ride(self, id):
 
