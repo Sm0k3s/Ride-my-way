@@ -42,6 +42,32 @@ class Signup(Resource):
 
 class Rides(Resource):   
     """Resource for /api/v1/rides"""
+
+
+    @jwt_required()
+    def get(self):
+        """Method to get all rides"""
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+        
+        cur.execute("SELECT * FROM rides")
+        result = cur.fetchall()
+        all_rides = []
+        for row in result:
+            all_rides.append(
+                {'id': row[0], 
+                'destination': row[1], 
+                'location': row[2], 
+                'time': row[3], 
+                'date': row[4]}
+                )
+        conn.close()
+        return {'rides': all_rides}, 200
+
+
+
+class UsersRides(Resource):
+    """Resource for /api/v1/users/rides"""
     parser = reqparse.RequestParser()
     parser.add_argument('id',
         type=str,
@@ -69,28 +95,9 @@ class Rides(Resource):
         help="You must provide a date."
     )
 
-    @jwt_required()
-    def get(self):
-        """Method to get all rides"""
-        conn = psycopg2.connect(db)
-        cur = conn.cursor()
-        
-        cur.execute("SELECT * FROM rides")
-        result = cur.fetchall()
-        all_rides = []
-        for row in result:
-            all_rides.append(
-                {'id': row[0], 
-                'destination': row[1], 
-                'location': row[2], 
-                'time': row[3], 
-                'date': row[4]}
-                )
-        conn.close()
-        return {'rides': all_rides}, 200
-
     def post(self):
-        data = Rides.parser.parse_args()
+        """Method to create a new ride offer"""
+        data = UsersRides.parser.parse_args()
 
         conn = psycopg2.connect(db)
         cur = conn.cursor()
@@ -104,11 +111,39 @@ class Rides(Resource):
         return {'Message': 'Your ride offer has been successfully created'}
 
 
+
 class Ride(Resource):
     """
     Resource for fetching the details of a single ride
     endpoint = /api/v1/rides/<int:ride_id>
     """
+    parser = reqparse.RequestParser()
+    parser.add_argument('id',
+        type=str,
+        required=False,
+        help="Identity"
+    )
+    parser.add_argument('destination',
+        type=str,
+        required=True,
+        help="You must provide a destination."
+    )
+    parser.add_argument('location',
+        type=str,
+        required=True,
+        help="You must provide a location."
+    )
+    parser.add_argument('time',
+        type=str,
+        required=True,
+        help="You must provide departure time."
+    )
+    parser.add_argument('date',
+        type=str,
+        required=True,
+        help="You must provide a date."
+    )
+
     def get(self, ride_id):
         """Method to get a single ride by id"""
         conn = psycopg2.connect(db)
@@ -118,6 +153,8 @@ class Ride(Resource):
         result = cur.execute(query, (ride_id,))
 
         row = cur.fetchone()
+
+        conn.close()
         if row is not None:
             ride ={
                 'id': row[0],
@@ -126,9 +163,55 @@ class Ride(Resource):
                 'date': row[3],
                 'time': row[4]
                 }
+            return ride, 200    
+        
+        return {'Message':'ride not found'}
 
+    def put(self, ride_id):
+        """Method to update a ride by id"""
+        data = Ride.parser.parse_args()
+
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
+        query = "SELECT * FROM rides WHERE id=%s"
+        result = cur.execute(query, (ride_id,))
+
+        row = cur.fetchone()
         conn.close()
-        return ride, 200
+        if row:
+            try:
+                conn = psycopg2.connect(db)
+                cur = conn.cursor()
+
+                query1 = """UPDATE rides SET destination=%s,location=%s,
+                    date=%s, time=%s WHERE id=%s"""
+                cur.execute(query1, (data['destination'], data['location'], 
+                    data['date'], data['time'], ride_id))
+
+                conn.commit()
+                conn.close()
+
+                return {'Message': 'ride updated successfully'}
+            except:
+                return {'Message': 'An error occurred while updating your ride'}
+        else:
+            try:
+                conn = psycopg2.connect(db)
+                cur = conn.cursor()
+                
+                query2 = "INSERT INTO rides VALUES (DEFAULT, %s, %s, %s, %s)"
+                cur.execute(query2, (data['destination'], data['location'],
+                    data['time'], data['date']))
+
+                conn.commit()
+                conn.close()
+            except:
+                return {'Message': 'An error occurred while inserting your items'}
+            
+
+
+
 
 class Users(Resource):   
     """Resource for /api/v1/users"""
@@ -170,7 +253,7 @@ class RequestRide(Resource):
                 'date': row[3],
                 'time': row[4]
                 }
-            return {'A request has sent for':request_}
+            return {'A request was sent for':request_}
 
         return {'Request':'not found'}, 404
 
