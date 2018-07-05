@@ -15,9 +15,9 @@ class ApiTests(unittest.TestCase):
             'Departure': '1900hrs'
             }
         self.user = {
-           'user_id':3,
-           'name':'micko',
-           'email':'mickoo@micko.com',
+          # 'user_id':3,
+           'username':'micko',
+          #'email':'mickoo@micko.com',
            'password':'deal123'
            }
 
@@ -43,8 +43,8 @@ class ApiTests(unittest.TestCase):
 
     def test_can_create_a_ride(self):
         """Test api can create a ride"""
-        newride = self.ride
-        resp = self.client.post('/api/v1/rides', data=json.dumps(newride),
+        
+        resp = self.client.post('/api/v1/users/rides', data=json.dumps(newride),
             content_type='application/json')
         self.assertEqual(resp.status_code, 201)
 
@@ -93,17 +93,18 @@ class ApiTests(unittest.TestCase):
         
     def test_user_login(self):
         """Test that login is okay /api/v1/auth/login"""
-        self.client.get('/api/v1/auth/signup')
+
         resp = self.client.post('/api/v1/auth/login',
             data=json.dumps(self.user),
             content_type='application/json'
             )
+        token = json.loads(resp.data.decode())
         self.assertEqual(resp.status_code, 200)
 
     def test_register_a_user(self):
         """Test registration is as expected /api/v1/auth/signup"""
         resp = self.client.post('/api/v1/auth/signup', data=json.dumps(self.user), content_type='application/json')
-        self.assertEqual(resp.status_code, 201)
+        self.assertEqual(resp['Message'], "Account created Successfully")
 
     def test_drivers_can_get_requests(self):
         """Test api can get a request /api/v1/users/rides/<int:ride_id>"""

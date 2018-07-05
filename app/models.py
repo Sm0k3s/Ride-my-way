@@ -110,7 +110,7 @@ class RideModel():
 
         query = "SELECT * FROM rides WHERE id=%s"
         result = cur.execute(query, (_id,))
-        row = result.fetchone()
+        row = cur.fetchone()
         if row is not None:
             ride = cls(row[0], row[1], row[2],row[3], row[4])
         else:

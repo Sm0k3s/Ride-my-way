@@ -1,6 +1,5 @@
-from flask_jwt import JWT
-from flask_restful import Resource,request, reqparse
-from flask_jwt import JWT, jwt_required
+from flask_restful import Resource, reqparse
+from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 import psycopg2
 from models import UserModel, RideModel
@@ -43,7 +42,6 @@ class Signup(Resource):
 class Rides(Resource):   
     """Resource for /api/v1/rides"""
 
-
     @jwt_required()
     def get(self):
         """Method to get all rides"""
@@ -62,7 +60,7 @@ class Rides(Resource):
                 'date': row[4]}
                 )
         conn.close()
-        return {'rides': all_rides}, 200
+        return {'rides': all_rides},200
 
 
 
@@ -103,12 +101,13 @@ class UsersRides(Resource):
         cur = conn.cursor()
 
         query = "INSERT INTO ride_offers VALUES (DEFAULT, %s, %s, %s, %s)"
-        cur.execute(query, (data['destination'], data['location'],data['time'], data['date']))
+        cur.execute(query, (data['destination'], data['location'],
+            data['time'], data['date']))
 
         conn.commit()
         conn.close()
 
-        return {'Message': 'Your ride offer has been successfully created'}
+        return {'Message': 'Your ride offer has been successfully created'}, 201
 
 
 
@@ -175,7 +174,7 @@ class Ride(Resource):
         cur = conn.cursor()
 
         query = "SELECT * FROM rides WHERE id=%s"
-        result = cur.execute(query, (ride_id,))
+        cur.execute(query, (ride_id,))
 
         row = cur.fetchone()
         conn.close()
@@ -211,8 +210,6 @@ class Ride(Resource):
             
 
 
-
-
 class Users(Resource):   
     """Resource for /api/v1/users"""
     @jwt_required()
@@ -236,7 +233,7 @@ class Users(Resource):
 
 class RequestRide(Resource):
     """
-    Resource for endpoint /api/v1/<int:ride_id>/requests
+    Resource for endpoint /api/v1/rides/<int:ride_id>/requests
     """
     def post(self, ride_id):
         conn = psycopg2.connect(db)
@@ -245,6 +242,7 @@ class RequestRide(Resource):
         query = "SELECT * FROM rides WHERE id=%s"
         cur.execute(query, (ride_id,))
         row = cur.fetchone()
+        conn.close()
         if row:
             request_ = {
                 'id': row[0],
@@ -254,6 +252,11 @@ class RequestRide(Resource):
                 'time': row[4]
                 }
             return {'A request was sent for':request_}
+        else:
+            return {'Message':'You just found a wormhole, next stop oblivion'}
 
-        return {'Request':'not found'}, 404
+class RequestAccept(Resource):
+    """Resource for /api/v1/rides/<int:rideId>/requests/<requestId> """
+    def put(self):
+        pass
 
