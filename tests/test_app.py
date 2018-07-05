@@ -1,6 +1,10 @@
 import unittest
 import json
+import psycopg2
 from run import app
+from app.models import Database
+# db = "dbname='db_tests' user='postgres' host='localhost' password='smokes'"
+# daba = Database()
 
 class ApiTests(unittest.TestCase):
     """Testing for rides"""
@@ -14,23 +18,23 @@ class ApiTests(unittest.TestCase):
             'destination':'mayolo',
             'Departure': '1900hrs'
             }
-        self.user = {
-          # 'user_id':3,
-           'username':'micko',
-          #'email':'mickoo@micko.com',
-           'password':'deal123'
-           }
+        self.user = {'username':'micko','password':'deal123'}
 
-        self.logged_in = {
-            "username":"smok",
-            "password":"pass"
-            }
+        self.logged_in = {"username":"smok","password":"pass"}
+
             
 
     def tearDown(self):
         """Destroys the test client when done"""
         self.app.testing = False
         self.app = None
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
+        query = "DROP TABLE rides; DROP TABLE users;"
+        cur.execute()
+        conn.commit()
+        conn.close()
 
     def test_get_all_rides(self):
         """Test api can get all rides"""

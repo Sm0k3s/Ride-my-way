@@ -1,6 +1,32 @@
 import psycopg2
 db = "dbname='test' user='postgres' host='localhost' password='smokes'"
+# db = "dbname='db_tests' user='postgres' host='localhost' password='smokes'"
 #ridemyway
+
+class Database():
+    
+    def create_tables():
+        conn = psycopg2.connect(db)
+        cur = conn.cursor()
+
+        query = """CREATE TABLE IF NOT EXISTS rides (
+        ride_id serial, location VARCHAR(100),
+        destination VARCHAR(100),
+        departure VARCHAR(15)); CREATE TABLE IF NOT EXISTS users(
+        id serial, username VARCHAR(100), password VARCHAR(100))"""
+
+        cur.execute(query)
+        conn.commit()
+        conn.close()
+    def drop_tables():
+        conn = psycopg2.connect(db)
+        cur = conn.cursor
+        
+        query = "DROP TABLE rides; DROP TABLE users;"
+
+        cur.execute(query)
+        conn.commit()
+        conn.close()
 
 class UserModel():
     """
@@ -16,7 +42,7 @@ class UserModel():
 
     def new_user(self, _id, username, password):
         conn = psycopg2.connect(db)
-        cur = conn.cursor
+        cur = conn.cursor()
 
         query ="INSERT INTO users VALUES(DEFAULT, %s, %s)"
         cur.execute(query, (self.username, self.password))

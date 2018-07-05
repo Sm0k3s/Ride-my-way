@@ -4,6 +4,8 @@ from werkzeug.security import safe_str_cmp
 import psycopg2
 from models import UserModel, RideModel
 
+
+
 #Saves the database in a db variable
 db = "dbname='test' user='postgres' host='localhost' password='smokes'"
 
@@ -47,7 +49,8 @@ class Rides(Resource):
         """Method to get all rides"""
         conn = psycopg2.connect(db)
         cur = conn.cursor()
-        
+ 
+
         cur.execute("SELECT * FROM rides")
         result = cur.fetchall()
         all_rides = []
@@ -59,6 +62,7 @@ class Rides(Resource):
                 'time': row[3], 
                 'date': row[4]}
                 )
+        conn.commit()
         conn.close()
         return {'rides': all_rides},200
 
