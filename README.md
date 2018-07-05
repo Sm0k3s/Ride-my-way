@@ -1,6 +1,7 @@
 # RIDE MY WAY API
 [![Build Status](https://travis-ci.org/Sm0k3s/Ride-my-way.svg?branch=API-v1)](https://travis-ci.org/Sm0k3s/Ride-my-way)
-[![Coverage Status](https://coveralls.io/repos/github/Sm0k3s/Ride-my-way/badge.svg?branch=master)](https://coveralls.io/github/Sm0k3s/Ride-my-way?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Sm0k3s/Ride-my-way/badge.svg?branch=API-v1)](https://coveralls.io/github/Sm0k3s/Ride-my-way?branch=API-v1)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f49a7a4bbc4987bc938f/maintainability)](https://codeclimate.com/github/Sm0k3s/Ride-my-way/maintainability)
 ## Description
 
 An API that enables CRUD methods for creating rides and accessing users for the ride my way app
