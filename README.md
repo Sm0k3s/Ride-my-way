@@ -1,5 +1,5 @@
 # RIDE MY WAY API
-https://travis-ci.org/Sm0k3s/Ride-my-way.svg?branch=API-v1
+[![Build Status](https://travis-ci.org/Sm0k3s/Ride-my-way.svg?branch=API-v1)](https://travis-ci.org/Sm0k3s/Ride-my-way)
 [![Coverage Status](https://coveralls.io/repos/github/Sm0k3s/Ride-my-way/badge.svg?branch=master)](https://coveralls.io/github/Sm0k3s/Ride-my-way?branch=master)
 ## Description
 
