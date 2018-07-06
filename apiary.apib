@@ -1,0 +1,150 @@
+FORMAT: 1A
+HOST: http://ride-my-way0.herokuapp.com
+
+# Ride-my-way
+
+Ride My Way is a simple carpooling API allowing users to sign up, create rides, request rides .
+## Rides [/api/v1/rides]
+
+
+### Fetch All Rides [GET]
++ Response 200 (application/json)
+
+        {
+         "rides": 
+         [
+        {
+         
+        "date": "12/7/2018",
+        "destination": "mombasa",
+        "id": 1,
+        "location": "kajiado",
+        "time": "13:00hrs"
+         
+        },
+        {
+         
+        "date": "10:00hrs",
+        "destination": "mobatha",
+        "id": 2,
+        "location": "space",
+        "time": "13/7/2018"
+         
+         },
+         {
+         
+        "date": "13/7/2018",
+        "destination": "mobatha",
+        "id": 3,
+        "location": "space",
+        "time": "10:00hrs"
+         
+        },
+        {
+        "date": "12:00hrs",
+        "destination": "mars",
+        "id": 4,
+        "location": "atlas space",
+        "time": "13/7/2028"
+        }
+        ]
+        }
+        
+
+### Create a ride [POST]
++ Request (application/json)
+
+        {
+            "destination": "mars",
+            "location":"atlas space",
+            "date":"13/7/2028",
+            "time":"12:00hrs"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /api/v1/users/rides
+
+    + Body
+    
+            {
+            "Message": 
+            "Your ride offer has been successfully created"
+            }
+
+## Questions Collection [/questions]
+
+
+### List All Questions [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 2048
+                    }, {
+                        "choice": "Python",
+                        "votes": 1024
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 512
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 256
+                    }
+                ]
+            }
+        ]
+
+### Create a New Question [POST]
+
+You may create your own question using this action. It takes a JSON
+object containing a question and a collection of answers in the
+form of choices.
+
++ Request (application/json)
+
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /questions/2
+
+    + Body
+
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 0
+                    }, {
+                        "choice": "Python",
+                        "votes": 0
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 0
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 0
+                    }
+                ]
+            }
